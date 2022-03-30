@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>aQuery</title>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <div id="x">Hi <span>G</span><span>G</span><span>G</span></div>
+        <div>Hi <span>G</span></div>
+        <div>Hi</div>
+        <button id="hide">Hide</button>
+        <button id="show">Show</button>
+        <script>
+            $('body #x').css('color','red').has('span').css('background-color','yellow')
+            $('#hide').click(function(){
+                $('body #x').last().toggle();
+            })
+            show.addEventListener('click',()=>{
+                $('body #x').toggle(2000);
+            })
+        </script>
+    </body>
+</html>
