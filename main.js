@@ -5,8 +5,7 @@ const aQuery = (query)=>{ /** QUERY = SELECTOR OR DOCUMENT */
         getNode:function(){
             return items[0];
         },
-        length:()=>{ return items.length},
-        
+        length:()=>{ return items.length; },
         /** REMOVE THIS Item FUNCTION */
         remove:function(){
             
@@ -22,6 +21,15 @@ const aQuery = (query)=>{ /** QUERY = SELECTOR OR DOCUMENT */
         /** GET LIST NODE CHILDES FUNCTION */
         children:function(){
             
+        },
+        text:function(val){
+            if(val){
+                this.items.forEach(el => {
+                    el.innerText = val;
+                });
+                return this;
+            }
+            return this.items[0].innerText;
         },
         /** START SELECTION METHODS */
         /** GET FIRST Item METHOD */
@@ -54,11 +62,16 @@ const aQuery = (query)=>{ /** QUERY = SELECTOR OR DOCUMENT */
         },
         /** FILTER Items FUNCTION */
         filter:function(query){
-
+            
         },
         /** FILTER Items WITH NOT FUNCTION */
         not:function(query){
-
+            
+        },
+        each:function(callbackFun){
+            this.items.forEach(el => {
+                callbackFun();
+            });
         },
         /** END SELECTION METHODS */
         /** START STYLE FUNCTIONS */
@@ -142,16 +155,22 @@ const aQuery = (query)=>{ /** QUERY = SELECTOR OR DOCUMENT */
         /** END STYLE FUNCTIONS */
         /** START CLASS FUNCTIONS */
         /** ADD CLASS FUNCTION */
-        addClass:function(){
-
+        addClass:function(className){
+            this.items.forEach(el => {
+                el.classList.add(className);
+            });
         },
         /** REMOVE CLASS FUNCTION */
-        removeClass:function(){
-
+        removeClass:function(className){
+            this.items.forEach(el => {
+                el.classList.remove(className);
+            });
         },
         /** TOGGLE CLASS FUNCTION */
-        toggleClass:function(){
-
+        toggleClass:function(className){
+            this.items.forEach(el => {
+                el.classList.toggle(className);
+            });
         },
         /** END CLASS FUNCTIONS */
         /** START EVENTS FUNCTIONS */
@@ -170,6 +189,15 @@ const aQuery = (query)=>{ /** QUERY = SELECTOR OR DOCUMENT */
                     return clickCallback();
                 })
             });
+        },
+        on:function(event,callbackFun){
+            event.split(" ").forEach(ev=>{
+                this.items.forEach(el => {
+                    el.addEventListener(ev,()=>{
+                        return callbackFun();
+                    })
+                });
+            })
         },
         /** END EVENTS FUNCTIONS */
     }
